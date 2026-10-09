@@ -1,0 +1,36 @@
+﻿# Compiled class files
+*.class
+
+# Log files
+*.log
+
+# Package Files
+*.jar
+*.war
+*.zip
+*.tar.gz
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini
+
+# Editor & IDE artifacts
+*.swp
+*.swo
+*~
+.LCK*
+*.bak
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+bin/
+target/
+build/
+out/

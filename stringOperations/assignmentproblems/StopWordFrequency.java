@@ -1,0 +1,44 @@
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+
+public class StopWordFrequency {
+
+    static void printFilteredWordFrequency(String feedback) {
+        String[] stopWords = {"the", "was", "and", "a", "is", "of", "in"};
+        String cleaned = feedback.toLowerCase().replace(".", "").replace(",", "").replace("!", "").replace("?", "").replace(";", "").replace(":", "");
+        String[] words = cleaned.trim().split("\\s+");
+        Map<String, Integer> frequency = new LinkedHashMap<>();
+        for (String word : words) {
+            if (word.isEmpty()) {
+                continue;
+            }
+            boolean isStop = false;
+            for (String stop : stopWords) {
+                if (stop.equals(word)) {
+                    isStop = true;
+                    break;
+                }
+            }
+            if (isStop) {
+                continue;
+            }
+            frequency.put(word, frequency.getOrDefault(word, 0) + 1);
+        }
+        List<Map.Entry<String, Integer>> entries = new ArrayList<>(frequency.entrySet());
+        entries.sort((x, y) -> y.getValue() - x.getValue());
+        for (Map.Entry<String, Integer> entry : entries) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter feedback: ");
+        String feedback = sc.nextLine();
+        printFilteredWordFrequency(feedback);
+        sc.close();
+    }
+}
